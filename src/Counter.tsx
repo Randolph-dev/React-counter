@@ -8,12 +8,31 @@ const Counter = () => {
 
     const handleAttack = () => {
         // alert('Attack is clicked!')
-        setCounter(counter +1)
+        setCounter((preCounter) => {
+            let newCount = preCounter + Math.round(Math.random() * 10)
+            return newCount
+        })
+        }
+        const handleDefense = () => {
+            // alert('Defend is clicked!')
+        setCounter((preCounter) => {
+            let newCount = preCounter + Math.round(Math.random() * 10)
+            return newCount
+            })
     }
-    const handleDefense = () => {
-        // alert('Defend is clicked!')
-        setCounter(counter -1)
+
+const handleReset = () => {
+    setCounter(0)
+}
+
+const handleRandomPlay = () => {
+    let playMode = Math.round(Math.random())
+    if(playMode === 0){
+        handleAttack()
+    } else {
+        handleDefense()
     }
+}
 
   return (
     <div className="row text-white text-center">
@@ -23,16 +42,26 @@ const Counter = () => {
         <p>Game status</p>
         <div className='col-6 col-md-3 offset-md-3'>
         <button onClick={handleAttack} style={{width: '200px'}}>+1</button>
-            <img src={attack} alt="attack" onClick={handleAttack} style={{cursor:'pointer', width:'100%', border:'2px solid green'}}/>
+            <img 
+            src={attack} 
+            alt="attack" 
+            onClick={handleAttack} 
+            style={{cursor:'pointer', width:'100%', border:'2px solid green'}}/>
         </div>
         <div className='col-6 col-md-3 offset-md-3'>
         <button onClick={handleDefense} style={{width: '200px'}}>-1</button>
-        <img src={defend} alt="defend" onClick={handleDefense} style={{cursor:'pointer', width:'100%', border:'2px solid green'}}/>
+            <img 
+            src={defend} 
+            alt="defend" 
+            onClick={handleDefense} 
+            style={{cursor:'pointer', 
+            width:'100%', 
+            border:'2px solid green'}}/>
         </div>
 
         <div className='col-12 col-md-4 offset-md-4'>
-            <button className='btn btn-secondary w-100 mt-2' >Random play</button>
-            <button className='btn btn-secondary w-100 mt-2' >Reset</button>
+            <button onClick={handleRandomPlay} className='btn btn-secondary w-100 mt-2' >Random play</button>
+            <button onClick={handleReset} className='btn btn-secondary w-100 mt-2' >Reset</button>
         </div>
 
     </div>
